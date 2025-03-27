@@ -63,23 +63,32 @@ function VGuide:OnInitialize()
 end
 
 function VGuide:PLAYER_LOGIN()
-    -- Initialize settings and core components
-    self.Settings = objSettings:new()
+    Dv("PLAYER_LOGIN: Initializing VGuide components")
+    
+    -- Initialisation des paramètres
+    if not self.InitializeSettings then
+        Dv("Error: InitializeSettings not defined")
+        return
+    end
+    self:InitializeSettings()
     self.Settings:CheckSettings()
     
+    -- Initialisation des tables de guide et affichage
+    if not objGuideTable or not objDisplay then
+        Dv("Error: objGuideTable or objDisplay not defined")
+        return
+    end
     self.GuideTable = objGuideTable:new(self.Settings)
     self.Display = objDisplay:new(self.Settings, self.GuideTable)
-    self.UI = objUI:new(self.Settings, self.Display)
     
-    -- Character info for debugging
-    local charInfo = {
-        Name = UnitName("player"),
-        Realm = GetRealmName(),
-        Class = UnitClass("player"),
-        Race = UnitRace("player"),
-        Faction = UnitFactionGroup("player")
-    }
-    Dv("Character Info: Name=", charInfo.Name, ", Realm=", charInfo.Realm, ", Class=", charInfo.Class, ", Race=", charInfo.Race, ", Faction=", charInfo.Faction)
+    -- Initialisation de l'UI
+    if not self.InitializeUI then
+        Dv("Error: InitializeUI not defined")
+        return
+    end
+    self:InitializeUI(self.Settings, self.Display)
+    
+    Dv("PLAYER_LOGIN: VGuide initialization complete")
 end
 
 function VGuide:OnEnable()

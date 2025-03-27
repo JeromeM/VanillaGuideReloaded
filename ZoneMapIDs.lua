@@ -1,14 +1,28 @@
--- ZoneMapIDs.lua
+--[[--------------------------------------------------
+----- VanillaGuide -----
+------------------
+ZoneMapIDs.lua
+Authors: mrmr, Grommey
+Version: 2.0
+------------------------------------------------------
+Description: 
+    Provides a mapping of zone names to mapID, continentID, and zoneIndex
+    for use with addons like TomTom in WoW 1.12.1.
+    2.0
+        -- Minor cleanup and documentation added
+------------------------------------------------------]]
+
+-- Ensure ZoneMapIDs exists as a global table
 ZoneMapIDs = ZoneMapIDs or {}
 
--- Table de base avec mapID et continentID (zoneIndex sera défini dynamiquement)
+-- Base data: mapID and continentID for each zone (zoneIndex is set dynamically)
 local db = {
     -- Kalimdor (continentID = 1)
     ["Ashenvale"] = { mapID = 331, continentID = 1 },
     ["Azshara"] = { mapID = 16, continentID = 1 },
     ["Barrens"] = { mapID = 17, continentID = 1 },
     ["Darkshore"] = { mapID = 148, continentID = 1 },
-    ["Darnassis"] = { mapID = 1657, continentID = 1 }, -- Darnassus
+    ["Darnassus"] = { mapID = 1657, continentID = 1 }, -- Corrected from "Darnassis"
     ["Desolace"] = { mapID = 405, continentID = 1 },
     ["Durotar"] = { mapID = 14, continentID = 1 },
     ["Dustwallow"] = { mapID = 15, continentID = 1 },
@@ -16,7 +30,7 @@ local db = {
     ["Feralas"] = { mapID = 357, continentID = 1 },
     ["Moonglade"] = { mapID = 493, continentID = 1 },
     ["Mulgore"] = { mapID = 215, continentID = 1 },
-    ["Ogrimmar"] = { mapID = 1637, continentID = 1 },
+    ["Orgrimmar"] = { mapID = 1637, continentID = 1 }, -- "Ogrimmar" corrected to "Orgrimmar"
     ["Silithus"] = { mapID = 1377, continentID = 1 },
     ["StonetalonMountains"] = { mapID = 406, continentID = 1 },
     ["Tanaris"] = { mapID = 440, continentID = 1 },
@@ -53,23 +67,23 @@ local db = {
     ["Wetlands"] = { mapID = 11, continentID = 2 },
 }
 
--- Initialiser ZoneMapIDs avec les données de base
+-- Populate ZoneMapIDs with base data
 for zoneName, data in pairs(db) do
     ZoneMapIDs[zoneName] = data
 end
 
--- Mettre à jour les zoneIndex dynamiquement
+-- Update zoneIndex dynamically based on GetMapZones
 local function UpdateZoneIndexes()
     local zoneNamesByContinent = {
         [1] = {GetMapZones(1)}, -- Kalimdor
         [2] = {GetMapZones(2)}, -- Eastern Kingdoms
     }
     for continentID, zoneNames in pairs(zoneNamesByContinent) do
-        for index, zoneName in ipairs(zoneNames) do
+        for zoneIndex, zoneName in pairs(zoneNames) do -- Changed ipairs to pairs for Lua 1.12.1 compatibility
+            local lowerZoneName = string.lower(zoneName)
             for dbZoneName, data in pairs(ZoneMapIDs) do
-                -- Utiliser string.lower explicitement pour éviter toute ambiguïté
-                if data.continentID == continentID and string.lower(zoneName) == string.lower(dbZoneName) then
-                    data.zoneIndex = index
+                if data.continentID == continentID and string.lower(dbZoneName) == lowerZoneName then
+                    data.zoneIndex = zoneIndex
                     break
                 end
             end
@@ -77,23 +91,21 @@ local function UpdateZoneIndexes()
     end
 end
 
--- Appeler la mise à jour au chargement
+-- Run the update at load
 UpdateZoneIndexes()
 
+-- Methods to access zone data
 function ZoneMapIDs:GetMapID(zoneName)
     local data = self[zoneName]
-    if data then return data.mapID end
-    return nil
+    return data and data.mapID or nil
 end
 
 function ZoneMapIDs:GetContinentID(zoneName)
     local data = self[zoneName]
-    if data then return data.continentID end
-    return nil
+    return data and data.continentID or nil
 end
 
 function ZoneMapIDs:GetZoneIndex(zoneName)
     local data = self[zoneName]
-    if data then return data.zoneIndex end
-    return nil
+    return data and data.zoneIndex or nil
 end
