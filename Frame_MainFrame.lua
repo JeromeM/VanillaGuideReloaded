@@ -338,118 +338,122 @@ function VGuide:InitializeMainFrame(fParent, tTexture)
         ChangeView()
     end)
     self.MainFrame.tWidgets.button_PrevGuideButton:SetScript("OnClick", function()
-        self.Display:PrevGuide()
+        self:PrevGuide()
         self:RefreshData()
     end)
     self.MainFrame.tWidgets.button_NextGuideButton:SetScript("OnClick", function()
-        self.Display:NextGuide()
+        self:NextGuide()
         self:RefreshData()
     end)
     self.MainFrame.tWidgets.button_PrevStepButton:SetScript("OnClick", function()
-        self.Display:PrevStep()
+        self:PrevStep()
         self:RefreshData()
     end)
     self.MainFrame.tWidgets.button_NextStepButton:SetScript("OnClick", function()
-        self.Display:NextStep()
+        self:NextStep()
         self:RefreshData()
     end)
 
     -- External Methods
     function VGuide:RefreshStepFrameLabel()
-        self.MainFrame.tWidgets.fs_StepFrame:SetText(self.Display:GetStepLabel())
-    end
-
-    function VGuide:RefreshScrollFrame()
-        local fScroll = self.MainFrame.tWidgets.frame_ScrollFrame
-        local fChild = self.MainFrame.tWidgets.frame_ScrollFrameChild
-        local fSlider = self.MainFrame.tWidgets.slider_ScrollFrameSlider
-        local scrollFrameWidth = fScroll:GetWidth() / fScroll:GetEffectiveScale()
-
-        for _, v in pairs(fChild.Entries) do v:Hide() end
-        local t = self.Display:GetScrollFrameDisplay()
-        fChild.Entries = {}
-
-        local totalHeight, tEntries = 0, { textWidth = {}, textHeight = {} }
-        local fs = CreateFrame("Frame"):CreateFontString(nil, "ARTWORK", tTexture.FONT)
-        fs:SetFont(tTexture.FONT_PATH, tTexture.FONT_HEIGHT)
-        for k, v in pairs(t) do
-            fs:SetText(v)
-            tEntries.textWidth[k] = fs:GetWidth()
-            local val = math.floor(tEntries.textWidth[k] / scrollFrameWidth)
-            tEntries.textHeight[k] = (val + 1) * tTexture.FONT_HEIGHT + 5
-            totalHeight = totalHeight + tEntries.textHeight[k] + tTexture.SCROLLFRAME_PADDING
-        end
-
-        local nFrameH = fScroll:GetHeight() + 5
-        local sliderVisible = totalHeight - nFrameH + 10 > 0
-        local shWidth = sliderVisible and (fScroll:GetWidth() - 40) or (fScroll:GetWidth() - 20)
-        if sliderVisible then
-            fSlider:SetMinMaxValues(0, totalHeight - nFrameH + 10)
-            fSlider:Show()
-            fScroll:SetPoint("BOTTOMRIGHT", self.MainFrame.tWidgets.frame_MainFrame, "BOTTOMRIGHT", -25, 27)
-        else
-            fSlider:SetMinMaxValues(0, 0)
-            fSlider:SetValue(0)
-            fSlider:Hide()
-            fScroll:SetPoint("BOTTOMRIGHT", self.MainFrame.tWidgets.frame_MainFrame, "BOTTOMRIGHT", -5, 27)
-        end
-
-        totalHeight = 0
-        local tColF = tUI.StepFrameColor
-        for k, v in pairs(t) do
-            if k <= self.Display:GetCurrentStepCount() then
-                local sh = CreateFrame("SimpleHTML", "VG_shEntry" .. k, fChild)
-                sh:SetFont(tTexture.FONT_PATH, tTexture.FONT_HEIGHT)
-                sh:SetTextColor(tUI.ScrollFrameTextColor.nR, tUI.ScrollFrameTextColor.nG, tUI.ScrollFrameTextColor.nB, tUI.ScrollFrameTextColor.nA)
-                sh:SetBackdrop(tTexture.BACKDROPSH)
-                sh:SetBackdropColor(k == self.Display:GetCurrentStep() and tColF.nR or .1, k == self.Display:GetCurrentStep() and tColF.nG or .1, k == self.Display:GetCurrentStep() and tColF.nB or .1, k == self.Display:GetCurrentStep() and tColF.nA or .5)
-                sh:SetJustifyH("LEFT")
-                sh:SetJustifyV("TOP")
-                sh:SetPoint("TOPLEFT", k > 1 and fChild.Entries[k-1] or fChild, k > 1 and "BOTTOMLEFT" or "TOPLEFT", 0, k > 1 and -tTexture.SCROLLFRAME_PADDING or -15)
-                sh:SetWidth(shWidth)
-                sh:SetHeight(tEntries.textHeight[k])
-                sh:SetText(v)
-                sh:Show()
-                sh:SetScript("OnEnter", function() this:SetTextColor(.91, .91, .91, .99); this:SetBackdropColor(.3, .3, .3, .7) end)
-                sh:SetScript("OnLeave", function()
-                    this:SetTextColor(tUI.ScrollFrameTextColor.nR, tUI.ScrollFrameTextColor.nG, tUI.ScrollFrameTextColor.nB, tUI.ScrollFrameTextColor.nA)
-                    this:SetBackdropColor(this:GetName():sub(11) == tostring(self.Display:GetCurrentStep()) and tColF.nR or .1, this:GetName():sub(11) == tostring(self.Display:GetCurrentStep()) and tColF.nG or .1, this:GetName():sub(11) == tostring(self.Display:GetCurrentStep()) and tColF.nB or .1, this:GetName():sub(11) == tostring(self.Display:GetCurrentStep()) and tColF.nA or .5)
-                end)
-                sh:SetScript("OnMouseUp", function()
-                    if arg1 == "LeftButton" then
-                        local step = self.Display:GetCurrentStep()
-                        fChild.Entries[step]:SetBackdropColor(.1, .1, .1, .5)
-                        local tx = tonumber(this:GetName():sub(11))
-                        self.Display:StepByID(tx)
-                        self:RefreshData()
-                    end
-                end)
-                fChild.Entries[k] = sh
-                totalHeight = totalHeight + tEntries.textHeight[k] + tTexture.SCROLLFRAME_PADDING
-            end
-        end
-        fChild:SetHeight(totalHeight - tTexture.SCROLLFRAME_PADDING)
-        fScroll:UpdateScrollChildRect()
-    end
-
-    function VGuide:RefreshTomTom()
-        local tTomTom = self.Settings:GetSettingsTomTom()
-        if tTomTom.Presence then
-            local title = self.Display:GetGuideTitle()
-            local t = self.Display:GetCurrentStepInfo()
-            if tTomTom.ArrowEnable then
-                self:SetTomTomDestination(t.x, t.y, t.zone, title)
-            else
-                TomTom:RemoveAllWaypoints()
-            end
-        end
-    end
-
-    function VGuide:RefreshData()
-        self:RefreshStepFrameLabel()
-        self:RefreshScrollFrame()
-        self:RefreshTomTom()
-    end
+		self.MainFrame.tWidgets.fs_StepFrame:SetText(self:GetStepLabel())
+	end
+	
+	function VGuide:RefreshScrollFrame()
+		local fScroll = self.MainFrame.tWidgets.frame_ScrollFrame
+		local fChild = self.MainFrame.tWidgets.frame_ScrollFrameChild
+		local fSlider = self.MainFrame.tWidgets.slider_ScrollFrameSlider
+		local scrollFrameWidth = fScroll:GetWidth() / fScroll:GetEffectiveScale()
+		local tUI = self.Settings:GetSettingsUI()
+		local tTexture = self.Textures
+	
+		for _, v in pairs(fChild.Entries) do v:Hide() end
+		local t = self:GetScrollFrameDisplay()
+		fChild.Entries = {}
+	
+		local totalHeight, tEntries = 0, { textWidth = {}, textHeight = {} }
+		local fs = CreateFrame("Frame"):CreateFontString(nil, "ARTWORK", tTexture.FONT)
+		fs:SetFont(tTexture.FONT_PATH, tTexture.FONT_HEIGHT)
+		for k, v in pairs(t) do
+			fs:SetText(v)
+			tEntries.textWidth[k] = fs:GetWidth()
+			local val = math.floor(tEntries.textWidth[k] / scrollFrameWidth)
+			tEntries.textHeight[k] = (val + 1) * tTexture.FONT_HEIGHT + 5
+			totalHeight = totalHeight + tEntries.textHeight[k] + tTexture.SCROLLFRAME_PADDING
+		end
+	
+		local nFrameH = fScroll:GetHeight() + 5
+		local sliderVisible = totalHeight - nFrameH + 10 > 0
+		local shWidth = sliderVisible and (fScroll:GetWidth() - 40) or (fScroll:GetWidth() - 20)
+		if sliderVisible then
+			fSlider:SetMinMaxValues(0, totalHeight - nFrameH + 10)
+			fSlider:Show()
+			fScroll:SetPoint("BOTTOMRIGHT", self.MainFrame.tWidgets.frame_MainFrame, "BOTTOMRIGHT", -25, 27)
+		else
+			fSlider:SetMinMaxValues(0, 0)
+			fSlider:SetValue(0)
+			fSlider:Hide()
+			fScroll:SetPoint("BOTTOMRIGHT", self.MainFrame.tWidgets.frame_MainFrame, "BOTTOMRIGHT", -5, 27)
+		end
+	
+		totalHeight = 0
+		local tColF = tUI.StepFrameColor
+		for k, v in pairs(t) do
+			if k <= self:GetCurrentStepCount() then
+				local sh = CreateFrame("SimpleHTML", "VG_shEntry" .. k, fChild)
+				sh:SetFont(tTexture.FONT_PATH, tTexture.FONT_HEIGHT)
+				sh:SetTextColor(tUI.ScrollFrameTextColor.nR, tUI.ScrollFrameTextColor.nG, tUI.ScrollFrameTextColor.nB, tUI.ScrollFrameTextColor.nA)
+				sh:SetBackdrop(tTexture.BACKDROPSH)
+				sh:SetBackdropColor(k == self:GetCurrentStep() and tColF.nR or .1, k == self:GetCurrentStep() and tColF.nG or .1, k == self:GetCurrentStep() and tColF.nB or .1, k == self:GetCurrentStep() and tColF.nA or .5)
+				sh:SetJustifyH("LEFT")
+				sh:SetJustifyV("TOP")
+				sh:SetPoint("TOPLEFT", k > 1 and fChild.Entries[k-1] or fChild, k > 1 and "BOTTOMLEFT" or "TOPLEFT", 0, k > 1 and -tTexture.SCROLLFRAME_PADDING or -15)
+				sh:SetWidth(shWidth)
+				sh:SetHeight(tEntries.textHeight[k])
+				sh:SetText(v)
+				sh:Show()
+				sh:SetScript("OnEnter", function() this:SetTextColor(.91, .91, .91, .99); this:SetBackdropColor(.3, .3, .3, .7) end)
+				sh:SetScript("OnLeave", function()
+					this:SetTextColor(tUI.ScrollFrameTextColor.nR, tUI.ScrollFrameTextColor.nG, tUI.ScrollFrameTextColor.nB, tUI.ScrollFrameTextColor.nA)
+					this:SetBackdropColor(this:GetName():sub(11) == tostring(self:GetCurrentStep()) and tColF.nR or .1, this:GetName():sub(11) == tostring(self:GetCurrentStep()) and tColF.nG or .1, this:GetName():sub(11) == tostring(self:GetCurrentStep()) and tColF.nB or .1, this:GetName():sub(11) == tostring(self:GetCurrentStep()) and tColF.nA or .5)
+				end)
+				sh:SetScript("OnMouseUp", function()
+					if arg1 == "LeftButton" then
+						local step = self:GetCurrentStep()
+						fChild.Entries[step]:SetBackdropColor(.1, .1, .1, .5)
+						local tx = tonumber(this:GetName():sub(11))
+						self:StepByID(tx)
+						self:RefreshData()
+					end
+				end)
+				fChild.Entries[k] = sh
+				totalHeight = totalHeight + tEntries.textHeight[k] + tTexture.SCROLLFRAME_PADDING
+			end
+		end
+		fChild:SetHeight(totalHeight - tTexture.SCROLLFRAME_PADDING)
+		fScroll:UpdateScrollChildRect()
+	end
+	
+	function VGuide:RefreshTomTom()
+		if IsAddOnLoaded("TomTom") then
+			local tTomTom = self.Settings:GetSettingsTomTom()
+			if tTomTom.Presence then
+				local title = self:GetGuideTitle()
+				local t = self:GetCurrentStepInfo()
+				if tTomTom.ArrowEnable then
+					self:SetTomTomDestination(t.x, t.y, t.zone, title)
+				else
+					TomTom:RemoveAllWaypoints()
+				end
+			end
+		end
+	end
+	
+	function VGuide:RefreshData()
+		self:RefreshStepFrameLabel()
+		self:RefreshScrollFrame()
+		self:RefreshTomTom()
+	end
 
     function VGuide:SetTomTomDestination(nX, nY, sZone, title)
         if not ZoneMapIDs or not TomTom then return end

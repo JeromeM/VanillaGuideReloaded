@@ -2,12 +2,12 @@
 ----- VanillaGuide -----
 ------------------
 UI.lua
-Authors: mrmr
-Version: 1.04.3
+Authors: mrmr, Grommey
+Version: 2.0
 ------------------------------------------------------
 Description: 
     UI initialization and texture definitions for VanillaGuide.
-    1.04.3
+    2.0
         -- Refactored to integrate with VGuide directly
         -- Removed separate objMainFrame, objSettingsFrame, objAboutFrame
 ------------------------------------------------------]]

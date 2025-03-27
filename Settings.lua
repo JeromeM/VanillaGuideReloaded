@@ -59,12 +59,6 @@ function VGuide:InitializeSettings()
             GuideID = 1,
             Step = 1,
         },
-        VGuideFu = {
-            ShowTitle = true,
-            ShowGuideName = false,
-            ShowGuideStep = false,
-            ShowLabels = true,
-        },
         TomTom = {
             Presence = false,
             ArrowEnable = false,

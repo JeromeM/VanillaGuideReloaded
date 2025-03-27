@@ -2,12 +2,12 @@
 ----- VanillaGuide -----
 ------------------
 Frame_SettingsFrame.lua
-Authors: mrmr
-Version: 1.05
+Authors: mrmr, Grommey
+Version: 2.0
 ------------------------------------------------------
 Description: 
     Settings Frame management for VanillaGuide
-    1.05
+    2.0
         -- Refactored to integrate with VGuide
         -- Removed objSettingsFrame, methods attached to VGuide
         -- Updated for TomTom support

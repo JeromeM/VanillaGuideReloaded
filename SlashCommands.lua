@@ -2,66 +2,53 @@
 ----- VanillaGuide -----
 ------------------
 SlashCommands.lua
-Authors: mrmr
-Version: 1.04.3
+Authors: mrmr, Grommey
+Version: 2.0
 ------------------------------------------------------
 Description: 
-      This file handles Slash Commands using Ace2 lib
-    1.00
-		-- Initial Ace2 release
-	1.99a
-		-- Ally addition starter version
-    1.03
-		-- No Changes. Just adjusting "version".
-			1.99x for a beta release was a weird choise.
-	1.04.1
-		-- no changes at all ;)
-	1.04.2
-		-- no changes in here for this revision
-	1.04.3
-		-- no changes in here for this revision
-------------------------------------------------------
-Connection:
---]]--------------------------------------------------
+    Slash command handling for VanillaGuide
+    2.0
+        -- Refactored to integrate with VGuide
+        -- Updated frame references and removed Ace2 remnants
+------------------------------------------------------]]
 
-local VGuide = VGuide
+function VGuide:InitializeSlashCommands()
+    -- Slash command options
+    local options = { 
+        type = 'group',
+        args = {
+            toggle = {
+                type = 'toggle',
+                name = 'toggle',
+                desc = 'This toggles VanillaGuide Main Frame visibility',
+                get = function() return self:IsMainFrameVisible() end,
+                set = function() self:ToggleMainFrameVisibility() end
+            }
+        }
+    }
 
-local options = { 
-    type='group',
-    args = {
-			toggle = {
-				type = 'toggle',
-				name = 'toggle',
-				desc = 'This Toggle VanillaGuide Main Frame visibility',
-				get = "IsMFVisible",
-				set = "ToggleMFVisibility"
-			}
-		--},
-	},
-}
+    -- Register slash commands
+    self:RegisterChatCommand({"/vguide", "/vg"}, options)
+end
 
-VGuide:RegisterChatCommand({"/vguide", "/vg"}, options)
-
-function VGuide:IsMFVisible()
-	local frame = getglobal("VG_MainFrame")
+function VGuide:IsMainFrameVisible()
+    local frame = self.MainFrame.tWidgets.frame_MainFrame
     return frame:IsVisible()
 end
 
-function VGuide:ToggleMFVisibility()
-    local frame = getglobal("VG_MainFrame")
-	local fSettings = getglobal("VG_SettingsFrame")
+function VGuide:ToggleMainFrameVisibility()
+    local frame = self.MainFrame.tWidgets.frame_MainFrame
+    local fSettings = self.SettingsFrame.tWidgets.frame_SettingFrame
     if frame:IsVisible() then
         frame:Hide()
-		if fSettings:IsVisible() then
-			fSettings.showthis = true
-			fSettings:Hide()
-		end
+        if fSettings:IsVisible() then
+            fSettings.showthis = true
+            fSettings:Hide()
+        end
     else
         frame:Show()
-		if fSettings.showthis then
-			fSettings:Show()
-		end
+        if fSettings.showthis then
+            fSettings:Show()
+        end
     end
 end
-
-return VGuide

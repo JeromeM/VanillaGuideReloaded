@@ -1,24 +1,21 @@
 ## Interface: 11200
-## Title: VanillaGuideReloaded |cff7fff7f -Ace2-|r
-## Notes: Step-by-Step 1 to 60 Guides, in an Ace2 addon.
+## Title: VanillaGuideReloaded
+## Notes: Step-by-Step 1 to 60 Guides for WoW Vanilla
 ## Author: Grommey
-## Version: 2.0.0
+## Version: 2.1.0
 ## DefaultState: enabled
 ## LoadOnDemand: 0
-## Dependencies: TomTom
+## OptionalDeps: Ace2
+## SavedVariables: VanillaGuideDB
+## SavedVariablesPerCharacter: VanillaGuideDBPC
 
 ## X-Credits: Joana/Mancow and Brian Kopps for the guides. rsheep for the Joana's guide and the addon itself. Kira and Cdlp for the Brian Kopps' guide. Velenran for Profession guides. mrmr for original Addon.
 ## X-Category: Quests
 ## X-Date: 2025-03-27
-## X-ReleaseDate: 2012-xx-xx
 ## X-Email: jerome@hollywoud.net
 ## X-Website: https://github.com/JeromeM/VanillaGuideReloaded
-## X-Embeds: Ace2, FuBar-Plugin-2.0, Tablet-2.0
-## OptionalDeps: Ace2, FuBar, Tablet-2.0
 
-## SavedVariables: VanillaGuideDB
-## SavedVariablesPerCharacter: VanillaGuideDBPC
-
+# Ace2 Libraries (required for SlashCommands.lua)
 libs\AceLibrary\AceLibrary.lua
 libs\AceOO-2.0\AceOO-2.0.lua
 libs\AceConsole-2.0\AceConsole-2.0.lua
@@ -27,9 +24,19 @@ libs\AceAddon-2.0\AceAddon-2.0.lua
 libs\AceDB-2.0\AceDB-2.0.lua
 libs\AceDebug-2.0\AceDebug-2.0.lua
 
+# Core addon files
 Core.lua
 Settings.lua
+GuideTable.lua
+Display.lua
+SlashCommands.lua
+Frame_MainFrame.lua
+Frame_AboutFrame.lua
+Frame_SettingsFrame.lua
+UI.lua
 ZoneMapIDs.lua
+
+# Guide tables
 GuideTables\001_Introduction.lua
 GuideTables\Horde\002_Mulgore.lua
 GuideTables\Horde\002_TirisfalGlades.lua
@@ -48,16 +55,3 @@ GuideTables\Alliance\003_Alliance_30to40.lua
 GuideTables\Alliance\003_Alliance_40to50.lua
 GuideTables\Alliance\003_Alliance_50to60.lua
 GuideTables\004_Professions.lua
-GuideTable.lua
-Display.lua
-SlashCommands.lua
-Frame_MainFrame.lua
-Frame_AboutFrame.lua
-Frame_SettingsFrame.lua
-UI.lua
-
-libs\Tablet-2.0\Tablet-2.0.lua
-libs\Dewdrop-2.0\Dewdrop-2.0.lua
-libs\FuBarPlugin-2.0\FubarPlugin-2.0.lua
-
-VGuideFu.lua

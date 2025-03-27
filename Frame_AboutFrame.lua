@@ -3,11 +3,11 @@
 ------------------
 Frame_AboutFrame.lua
 Authors: mrmr, Grommey
-Version: 1.05
+Version: 2.0
 ------------------------------------------------------
 Description: 
     About Frame management for VanillaGuide
-    1.05
+    2.0
         -- Refactored to integrate with VGuide
         -- Removed objAboutFrame, methods attached to VGuide
         -- Updated author to Grommey

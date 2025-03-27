@@ -63,9 +63,7 @@ function VGuide:OnInitialize()
 end
 
 function VGuide:PLAYER_LOGIN()
-    Dv("PLAYER_LOGIN: Initializing VGuide components")
     
-    -- Initialisation des paramètres
     if not self.InitializeSettings then
         Dv("Error: InitializeSettings not defined")
         return
@@ -73,22 +71,29 @@ function VGuide:PLAYER_LOGIN()
     self:InitializeSettings()
     self.Settings:CheckSettings()
     
-    -- Initialisation des tables de guide et affichage
-    if not objGuideTable or not objDisplay then
-        Dv("Error: objGuideTable or objDisplay not defined")
+    if not self.InitializeGuideTable then
+        Dv("Error: InitializeGuideTable not defined")
         return
     end
-    self.GuideTable = objGuideTable:new(self.Settings)
-    self.Display = objDisplay:new(self.Settings, self.GuideTable)
+    self:InitializeGuideTable(self.Settings)
     
-    -- Initialisation de l'UI
+    if not self.InitializeDisplay then
+        Dv("Error: InitializeDisplay not defined")
+        return
+    end
+    self:InitializeDisplay(self.Settings, self)
+    
     if not self.InitializeUI then
         Dv("Error: InitializeUI not defined")
         return
     end
-    self:InitializeUI(self.Settings, self.Display)
+    self:InitializeUI(self.Settings, self)
     
-    Dv("PLAYER_LOGIN: VGuide initialization complete")
+    if not self.InitializeSlashCommands then
+        Dv("Error: InitializeSlashCommands not defined")
+        return
+    end
+    self:InitializeSlashCommands()
 end
 
 function VGuide:OnEnable()
