@@ -1,0 +1,52 @@
+## Interface: 11200
+## Title: VanillaGuideReloaded |cff7fff7f -Ace2-|r
+## Notes: Step-by-Step 1 to 60 Guides, in an Ace2 addon. Reloaded version.
+## Author: Grommey (originally by mrmr)
+## Version: 2.0.0
+## DefaultState: enabled
+## LoadOnDemand: 0
+
+## X-Credits: Sage for the guides. mrmr for the original addon.
+## X-Category: Quests
+## X-Date: 2025-07-25
+## X-Email: 
+## X-Website: 
+## X-Embeds: Ace2
+## OptionalDeps: Ace2, TomTom
+
+## SavedVariablesPerCharacter: VanillaGuideReloadedDBPC
+
+libs\AceLibrary\AceLibrary.lua
+libs\AceOO-2.0\AceOO-2.0.lua
+libs\AceConsole-2.0\AceConsole-2.0.lua
+libs\AceEvent-2.0\AceEvent-2.0.lua
+libs\AceAddon-2.0\AceAddon-2.0.lua
+libs\AceDB-2.0\AceDB-2.0.lua
+libs\AceDebug-2.0\AceDebug-2.0.lua
+libs\Dewdrop-2.0\Dewdrop-2.0.lua
+
+Core.lua
+Display.lua
+UI.lua
+Settings.lua
+SlashCommands.lua
+
+Quests\GuideParser.lua
+Quests\GuideRegistry.lua
+Quests\QuestTracker.lua
+Quests\Helpers.lua
+
+Frames\Frame_MainFrame.lua
+Frames\Frame_AboutFrame.lua
+Frames\Frame_SettingsFrame.lua
+
+Guides\GuideLoader.xml
+
+db\quests.lua
+db\enUS\quests.lua
+db\enUS\zones.lua
+db\enUS\units.lua
+db\items.lua
+db\units.lua
+db\objects.lua
+db\areatrigger.lua

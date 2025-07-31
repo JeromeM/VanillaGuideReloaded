@@ -1,0 +1,26 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+
+    <!-- SAGE GUIDE-->
+    <!-- Starting Zones -->
+    <Include file="Sage\StartingZones\1-11_Elwynn_Forest.lua"/>
+    <Include file="Sage\StartingZones\1-11_Dun_Morogh.lua"/>
+    <Include file="Sage\StartingZones\1-11_Teldrassil.lua"/>
+
+    <!-- Leveling -->
+    <Include file="Sage\Leveling\11-13_Loch_Modan.lua"/>
+    <Include file="Sage\Leveling\11-19_Darkshore.lua"/>
+    <Include file="Sage\Leveling\12-14_Westfall.lua"/>
+    <Include file="Sage\Leveling\14-17_Loch_Modan.lua"/>
+    <Include file="Sage\Leveling\19-20_Redridge.lua"/>
+    <Include file="Sage\Leveling\20-21_Duskwood.lua"/>
+
+    <!-- Misc -->
+    <Include file="Sage\Misc\Sage_Guide_Blackrock_Depths.lua"/>
+    <Include file="Sage\Misc\Sage_Guide_Lower_Blackrock_Spire.lua"/>
+    <Include file="Sage\Misc\Sage_Guide_Molten_Core.lua"/>
+    <Include file="Sage\Misc\Sage_Guide_Onyxias_Lair.lua"/>
+    <Include file="Sage\Misc\Sage_Guide_Uldaman.lua"/>
+    <Include file="Sage\Misc\Sage_Guide_World_Bosses.lua"/>
+    <Include file="Sage\Misc\Sage_Guide_Zul_Farrak.lua"/>
+
+</Ui>
