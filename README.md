@@ -2,7 +2,7 @@ VanillaGuide
 ============
 VanillaGuide aim to cover the hole for an in-game guide for Vanilla WoW. The AddOn features:
 
-* Step-by-Step Zone Guides (from Joana and Brian Kopps work)
+* Step-by-Step Zone Guides (Sage - Alliance only)
 * Hints and Tips for various Quests
 * [TomTom Vanilla](https://github.com/cralor/TomTomVanilla) Integration
 
@@ -13,18 +13,16 @@ VanillaGuide aim to cover the hole for an in-game guide for Vanilla WoW. The Add
 
 Credits
 =======
-Well, thank you Joana/Mancow, you ruined my life with WoW, but I love you anyway.
+Sage for the alliance Guide : https://www.sageguide.net/
 
-and here're the links to the REAL guide:
+mrmr for the Original Addon : https://github.com/isalcedo/VanillaGuide (don't know if it the original or not.. There are a ton of forks)
 
-    http://www.joanasworld.com/meet_joana_mancow.html
-    http://www.joanasworld.com/azeroth.htm
-    http://www.joanasworld.com/Joanas1-60Guide.pdf
 
 Donations
 =========
 If you would like to support this project, you may donate to our development fund via Paypal.
 
+Original mrmr guide :
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LSR84M2ZJEPJS)
 
 Any funds donated will be used to help further development on this project, by purchasing equipment, etc.
