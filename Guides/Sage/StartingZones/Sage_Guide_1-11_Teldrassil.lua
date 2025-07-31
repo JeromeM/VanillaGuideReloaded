@@ -1,6 +1,6 @@
 RegisterGuide({
-    id = 3,
-    nextGuideID = 11,
+    id = 1103,
+    nextGuideID = 1115,
     faction = "Alliance",
     title = "1-11 Teldrassil",
     category = "Alliance/Leveling",

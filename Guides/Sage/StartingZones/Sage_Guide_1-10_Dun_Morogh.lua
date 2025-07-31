@@ -1,6 +1,6 @@
 RegisterGuide({
-    id = 2,
-    nextGuideID = 10,
+    id = 1101,
+    nextGuideID = 1012,
     faction = "Alliance",
     title = "1-10 Dun Morogh",
     category = "Alliance/Leveling",

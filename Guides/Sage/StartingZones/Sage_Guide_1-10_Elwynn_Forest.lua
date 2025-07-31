@@ -1,6 +1,6 @@
 RegisterGuide({
-    id = 1,
-    nextGuideID = 10,
+    id = 1102,
+    nextGuideID = 1012,
     faction = "Alliance",
     title = "1-10 Elwynn Forest",
     category = "Alliance/Leveling",
