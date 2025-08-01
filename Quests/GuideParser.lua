@@ -39,17 +39,14 @@ function GuideParser:new()
 
         local dialect = {
             ["A"] = {
-                ["text"] = "Accept",
                 ["search"] = "start",
                 ["color"]  = "0000ffff",
             },
             ["C"] = {
-                ["text"] = "Do",
                 ["search"] = "",
                 ["color"]  = "000079d2",
             },
             ["T"] = {
-                ["text"] = "Turn-in",
                 ["search"] = "end",
                 ["color"]  = "0000ff00",
             },
@@ -138,7 +135,7 @@ function GuideParser:new()
                 lZ = VGDB["zones"]["enUS"][lZ]
             end
 
-            return string.format("%s %s", dialectType["text"], "|c" .. dialectType["color"] .. name .. "|r")
+            return string.format("%s", "|c" .. dialectType["color"] .. name .. "|r")
             
         end)
 
@@ -148,17 +145,20 @@ function GuideParser:new()
     -- Simple Commands
     obj.SimpleCommand = function(self, text)
         local dialect = {
-            ["H"] = { ["text"] = "Hearthstone" },
-            ["S"] = { ["text"] = "Set hearthstone" },
-            ["F"] = { ["text"] = "Take a flight" },
-            ["P"] = { ["text"] = "Get a new flight point" },
-            ["T"] = { ["text"] = "Visit trainer" },
-            ["V"] = { ["text"] = "Vendor" },
-            ["R"] = { ["text"] = "Repair" },
+            ["H"] = { ["text"] = "[*] %s" },
+            ["S"] = { ["text"] = "[#] %s" },
+            ["F"] = { ["text"] = "[>] %s" },
+            ["P"] = { ["text"] = "[+] %s" },
+            ["T"] = { ["text"] = "[!]"},
+            ["V"] = { ["text"] = "Vendor "},
+            ["R"] = { ["text"] = "Repair "},
         }
 
-        local rep = string.gsub(text, "%[([HSFPTVR])%]", function(type)
-            return dialect[type]["text"]
+        local rep = string.gsub(text, "%[([HSFPTVR])%s?(.-)%]", function(type, text)
+            if type == "V" or type == "R" or type == "T" then
+                return string.format(dialect[type]["text"])
+            end
+            return string.format(dialect[type]["text"], text)
         end)
 
         return rep

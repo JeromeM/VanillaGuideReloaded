@@ -2,9 +2,9 @@
 
     <!-- SAGE GUIDE-->
     <!-- Starting Zones -->
-    <Include file="Sage\StartingZones\1-11_Elwynn_Forest.lua"/>
-    <Include file="Sage\StartingZones\1-11_Dun_Morogh.lua"/>
-    <Include file="Sage\StartingZones\1-11_Teldrassil.lua"/>
+    <Include file="Sage\StartingZones\Sage_Guide_1-11_Elwynn_Forest.lua"/>
+    <Include file="Sage\StartingZones\Sage_Guide_1-11_Dun_Morogh.lua"/>
+    <Include file="Sage\StartingZones\Sage_Guide_1-11_Teldrassil.lua"/>
 
     <!-- Leveling -->
     <Include file="Sage\Leveling\Sage_Guide_10-12_Loch_Modan.lua"/>

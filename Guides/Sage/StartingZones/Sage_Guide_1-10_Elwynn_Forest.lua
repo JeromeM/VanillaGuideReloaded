@@ -3,7 +3,7 @@ RegisterGuide({
     nextGuideID = 1012,
     faction = "Alliance",
     title = "1-10 Elwynn Forest",
-    category = "Alliance/Leveling",
+    category = "Alliance/Starting Zones",
     steps = {
         {
             text = 

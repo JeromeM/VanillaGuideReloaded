@@ -3,7 +3,7 @@ RegisterGuide({
     nextGuideID = 1115,
     faction = "Alliance",
     title = "1-11 Teldrassil",
-    category = "Alliance/Leveling",
+    category = "Alliance/Starting Zones",
     steps = {
         {
             text = 
