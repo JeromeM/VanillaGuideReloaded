@@ -160,7 +160,7 @@ function objMainFrame:new(fParent, tTexture, oSettings, oDisplay)
 	fsTitle:SetTextColor(.91, .79, .11, 1)
 	fsTitle:SetJustifyH("CENTER")
 	fsTitle:SetJustifyV("CENTER")
-	fsTitle:SetText("|cccff1919Vanilla|ccceeeeeeGuide |ccca1a1a1v|ccc4a4aa1" .. version .. "|r")
+	fsTitle:SetText("|ccc4a4aa1Vanilla|ccca1a1a1Guide|cccff1919Reloaded|r v" .. version)
 
 
 	-- Close Button
