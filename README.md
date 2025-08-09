@@ -26,6 +26,8 @@ Credits
 =======
 Sage for the alliance Guide : https://www.sageguide.net/
 
+Shagu for the databases : https://github.com/shagu/
+
 mrmr for the Original Addon : https://code.google.com/archive/p/vanillaguide/ (don't know if it the original or not.. There are a ton of forks)
 
 You can find me on TurtleWOW Discord : https://discord.gg/turtlewow
