@@ -17,6 +17,11 @@ Guide will automatically load when you log in.
 You can select another guide with the menu at the bottom.
 I also suggest to bind keys for the next / prev step in Keyboard shortcuts.
 
+Known Bug
+=========
+The arrow will only indicate the direction of the next step if you have TomTom TWOW installed.
+I'm working on a port of Guidelime (from scratch) with better arrow support (https://github.com/JeromeM/GuidelimeVanilla)
+
 Credits
 =======
 Sage for the alliance Guide : https://www.sageguide.net/
