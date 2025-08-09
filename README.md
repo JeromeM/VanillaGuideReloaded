@@ -4,7 +4,7 @@ VanillaGuideReloaded aim to cover the hole for an in-game guide for Vanilla WoW.
 
 * Step-by-Step Zone Guides (Sage - Alliance only)
 * Hints and Tips for various Quests
-* [TomTom Vanilla](https://github.com/cralor/TomTomVanilla) Integration
+* [TomTom TWOW](https://github.com/laytya/TomTom-TWOW) Integration
 
 > **NOTE:**
 >
