@@ -1,6 +1,6 @@
-VanillaGuide
-============
-VanillaGuide aim to cover the hole for an in-game guide for Vanilla WoW. The AddOn features:
+VanillaGuideReloaded
+====================
+VanillaGuideReloaded aim to cover the hole for an in-game guide for Vanilla WoW. The AddOn features:
 
 * Step-by-Step Zone Guides (Sage - Alliance only)
 * Hints and Tips for various Quests
@@ -11,22 +11,16 @@ VanillaGuide aim to cover the hole for an in-game guide for Vanilla WoW. The Add
 > - This Addon is developed for WoW 1.12.1 (toc 11200), also known as Vanilla WoW 
 >
 
+Usage
+=====
+Guide will automatically load when you log in.
+You can select another guide with the menu at the bottom.
+I also suggest to bind keys for the next / prev step in Keyboard shortcuts.
+
 Credits
 =======
 Sage for the alliance Guide : https://www.sageguide.net/
 
-mrmr for the Original Addon : https://github.com/isalcedo/VanillaGuide (don't know if it the original or not.. There are a ton of forks)
+mrmr for the Original Addon : https://code.google.com/archive/p/vanillaguide/ (don't know if it the original or not.. There are a ton of forks)
 
-
-Donations
-=========
-If you would like to support this project, you may donate to our development fund via Paypal.
-
-Original mrmr guide :
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LSR84M2ZJEPJS)
-
-Any funds donated will be used to help further development on this project, by purchasing equipment, etc.
-
-We are always looking for more volunteers to help with coding, customizations, etc, so feel free to contact us.
-
-Thank you.
+You can find me on TurtleWOW Discord : https://discord.gg/turtlewow
