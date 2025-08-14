@@ -34,8 +34,10 @@ RegisterGuide({
                    "       Thousand Needles\n" ..
                    "              |cFFFFFFFFX|r [QA1106]\n" ..
                    "              |cFFFFFFFFO|r [QA1115]\n" ..
-                   "====================================\n" ..
-                   "In Booty Bay\n" ..
+                   "===================================="
+        },
+        {
+            text = "In Booty Bay\n" ..
                    "       At the bank\n" ..
                    "              |cFFe6cc80Withdraw:|r Bloodscalp Ears, Krazek's Crock Pot, Large River Crocolisk Skin,\n" ..
                    "              Singing Crystal Shard\n" ..

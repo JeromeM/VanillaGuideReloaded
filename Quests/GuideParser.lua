@@ -168,7 +168,7 @@ function GuideParser:new()
     -- Class Commands (Keep only if good class)
     obj.ClassCommand = function(self, text)
         local lines = {}
-        for line in string.gmatch(text, "([^\n]+)") do
+        for line in string.gfind(text, "([^\n]+)") do
             table.insert(lines, line)
         end
     
@@ -179,7 +179,7 @@ function GuideParser:new()
         for _, line in ipairs(lines) do
             local classRaceTags = string.match(line, "%[A ([^%]]+)%]")
             if classRaceTags then
-                for classRaceTag in string.gmatch(classRaceTags, "([^,]+)") do
+                for classRaceTag in string.gfind(classRaceTags, "([^,]+)") do
 
                     classRaceTag = string.gsub(classRaceTag, "%s+", "")
                     classRaceTag = string.lower(classRaceTag)

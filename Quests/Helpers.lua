@@ -25,3 +25,7 @@ function GetPnjLocation(name)
 
     return nil, nil, nil
 end
+
+if not string.gmatch then
+    string.gmatch = string.gfind
+end

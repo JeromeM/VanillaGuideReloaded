@@ -74,7 +74,7 @@ function GuideRegistry:_insertIntoTree(guide)
     local node = self.tree
 
     -- Split category by either forward slash or backslash
-    for part in string.gmatch(guide.category, "([^/\\]+)") do
+    for part in string.gfind(guide.category, "([^/\\]+)") do
         node.children = node.children or {}
         node.children[part] = node.children[part] or {}
         node = node.children[part]
