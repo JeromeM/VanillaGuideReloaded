@@ -136,6 +136,23 @@ function GuideRegistry:BuildMenu(level, value)
     return 
   end
 
+  function loadGuide(guide)
+    if VGuide and VGuide.Display then
+      local success, errorMsg = pcall(function()
+        VGuide.Display:GuideByID(guide.id)
+        if VGuide.UI and VGuide.UI.RefreshData then
+          VGuide.UI:RefreshData()
+        else
+          local mainFrame = getglobal("VG_MainFrame")
+          if mainFrame and mainFrame.obj and mainFrame.obj.RefreshData then
+            mainFrame.obj:RefreshData()
+          end
+        end
+        GuideRegistry:CloseMenu()
+      end)
+    end
+  end
+
   -- Si ce noeud contient plusieurs guides, les afficher
   if node.guides then
     for _, guide in ipairs(node.guides) do
@@ -143,21 +160,8 @@ function GuideRegistry:BuildMenu(level, value)
         "text", guide.title,
         "color", {1, 0.8, 0, 1},  -- Or
         "highlight", {1, 0.9, 0.5, 1},  -- Or clair
-        "func", function()
-          if VGuide and VGuide.Display then
-            local success, errorMsg = pcall(function()
-              VGuide.Display:GuideByID(guide.id)
-              if VGuide.UI and VGuide.UI.RefreshData then
-                VGuide.UI:RefreshData()
-              else
-                local mainFrame = getglobal("VG_MainFrame")
-                if mainFrame and mainFrame.obj and mainFrame.obj.RefreshData then
-                  mainFrame.obj:RefreshData()
-                end
-              end
-            end)
-          end
-        end
+        "func", loadGuide,
+        "arg1", guide
       )
     end
   end
@@ -187,8 +191,6 @@ function GuideRegistry:BuildMenu(level, value)
         "hasArrow", hasChildren or hasGuides,
         "value", child,
         "tooltipTitle", name,
-        "tooltipText", string.format("Category: %s\nHas children: %s\nHas guides: %s", 
-          name, tostring(hasChildren), tostring(hasGuides)),
         "tooltipOnButton", true
       )
     end

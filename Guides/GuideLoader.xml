@@ -2,8 +2,8 @@
 
     <!-- SAGE GUIDE-->
     <!-- Starting Zones -->
-    <Include file="Sage\StartingZones\Sage_Guide_1-11_Elwynn_Forest.lua"/>
-    <Include file="Sage\StartingZones\Sage_Guide_1-11_Dun_Morogh.lua"/>
+    <Include file="Sage\StartingZones\Sage_Guide_1-10_Elwynn_Forest.lua"/>
+    <Include file="Sage\StartingZones\Sage_Guide_1-10_Dun_Morogh.lua"/>
     <Include file="Sage\StartingZones\Sage_Guide_1-11_Teldrassil.lua"/>
 
     <!-- Leveling -->
