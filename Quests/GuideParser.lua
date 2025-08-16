@@ -2,7 +2,6 @@
 Vanilla Guide Reloaded
 
 Author: Grommey (originally by mrmr)
-Version: 2.0.0
 
 Description:
 Parse the special commands of the guides.

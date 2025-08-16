@@ -2,7 +2,6 @@
 Vanilla Guide Reloaded
 
 Author: Grommey (originally by mrmr)
-Version: 2.0.0
 
 Description:
 Implements the about frame UI component for the addon.

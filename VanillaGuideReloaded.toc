@@ -2,7 +2,7 @@
 ## Title: VanillaGuideReloaded |cff7fff7f -Ace2-|r
 ## Notes: Step-by-Step 1 to 60 Guides, in an Ace2 addon. Reloaded version.
 ## Author: Grommey (originally by mrmr)
-## Version: 2.0.0
+## Version: 2.0.3
 ## DefaultState: enabled
 ## LoadOnDemand: 0
 
