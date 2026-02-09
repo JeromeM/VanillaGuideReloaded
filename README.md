@@ -1,3 +1,5 @@
+OBSOLETE : Use https://github.com/JeromeM/GuidelimeVanilla instead
+
 VanillaGuideReloaded
 ====================
 VanillaGuideReloaded aim to cover the hole for an in-game guide for Vanilla WoW. The AddOn features:
